@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,formulario_de_registro,login,recuperar
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('registrar',registrar),
+    path('bicicletas-agregar',bicicletas_agregar),
+    path('bicicletas-editar',bicicletas_editar),
+    path('bicicletas_eliminar',bicicletas_eliminar),
+    path('bicicletas',bicicletas),
+    path('escritorio',escritorio),
+    path('formulario-de-registro',formulario_de_registro),
+    path('login',login),
+    path('recuperar',recuperar),
+
 ]
