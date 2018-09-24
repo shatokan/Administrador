@@ -135,12 +135,6 @@
 				                        </ul>
 				                    </li>
 									
-									
-									
-									
-									
-									
-									
 									<li>
 				                        <a class="nav-link" href="escritorio.html">
 				                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
@@ -160,10 +154,7 @@
 				                </ul>
 				            </nav>
 				
-				           
-				
 				            <hr class="separator" />
-				
 				        
 				        </div>
 				
@@ -208,6 +199,10 @@
 										
 								<div class="row">
 							<div class="col">
+							{% load widget_tweaks %}	
+							{{ form.non_field_errors }}
+							<form action="{% url 'bicicletas-agregar' %}" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
 								<section class="card">
 									<header class="card-header">
 										<div class="card-actions">
@@ -217,155 +212,67 @@
 						
 										<h2 class="card-title">Agregar Bicicleta</h2>
 									</header>
-								
-											
 											
 											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número de Serie</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.numero_serie.id_for_label }}">Número de Serie</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
+													{{ form.numero_serie|add_class:"form-control" }}
 												</div>
 											</div>
-											
-											
-											
 											
 												<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Marca</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.marca.id_for_label }}">Marca</label>
 												<div class="col-lg-6">
+													{{ form.marca|add_class:"form-control mb-3" }}
+												</div>
+											</div>
+											
+											
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.modelo.id_for_label }}">Modelo</label>
+												<div class="col-lg-6">
+													{{ form.modelo|add_class:"form-control" }}
+												</div>
+											</div>
+											
+											
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.estilo.id_for_label }}">Estilo</label>
+												<div class="col-lg-6">
+													{{ form.estilo|add_class:"form-control mb-3" }}
+												</div>
+											</div>
+											
+											
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.color_primario.id_for_label }}">Color Primario</label>
+												<div class="col-lg-6">
+													{{ form.color_primario|add_class:"form-control mb-3" }}
+												</div>
+											</div>
+											
+											
+											
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.color_secundario.id_for_label }}">Color Secundario</label>
+												<div class="col-lg-6">
+												   {{ form.color_secundario|add_class:"form-control mb-3" }}
 												
-													<select class="form-control mb-3">
-														<option value="1">GT</option>
-														<option value="2">Bianchi</option>
-														<option value="3">Canyon</option>
-														<option value="4">Mongoose</option>
-														<option value="5">Merida</option>
-														<option value="6">Kona</option>
-														<option value="7">Jeep</option>
-														<option value="8">Giant</option>
-														<option value="9">Cannondale</option>
-														<option value="10">Lahsen</option>
-														<option value="11">BMC</option>
-														<option value="12">Fuji</option>
-														<option value="13">Focus</option>
-														<option value="14">Oxford</option>
-														<option value="15">Rocky Mountain</option>
-														<option value="16">Scott</option>
-														<option value="17">Specialized</option>
-														<option value="18">Trek</option>
-														<option value="19">Upland</option>
-														<option value="20">Venzo</option>
-														<option value="21">Otros</option>
-													
-													</select>
-													
 												</div>
 											</div>
 											
 											
-											
 											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Modelo</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.aro.id_for_label }}">Aro</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Estilo</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="1">Hibrida</option>
-														<option value="2">Ciudad/Urbana</option>
-														<option value="3">Mountain Bike</option>
-														<option value="4">Cross o BMX</option>
-														<option value="5">Pistera o Rutera</option>
-														<option value="6">Fixie</option>
-														<option value="7">Plegables</option>
-														<option value="8">El&eacute;ctrica</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Color Primario</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="Amarillo">Amarillo</option>
-														<option value="Azul">Azul</option>
-														<option value="Blanco">Blanco</option>
-														<option value="Cafe">Cafe</option>
-														<option value="Celeste">Celeste</option>
-														<option value="Dorado">Dorado</option>
-														<option value="Gris">Gris</option>
-														<option value="Morado">Morado</option>
-														<option value="Naranjo">Naranjo</option>
-														<option value="Negro">Negro</option>
-														<option value="Plateado">Plateado</option>
-														<option value="Rojo">Rojo</option>
-														<option value="Verde">Verde</option>
-														<option value="9">Otros</option>
-													</select>
-													
+												 	{{ form.aro|add_class:"form-control mb-3" }}
 												</div>
 											</div>
 											
 											
 											
 											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Color Secundario</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="Amarillo">Amarillo</option>
-														<option value="Azul">Azul</option>
-														<option value="Blanco">Blanco</option>
-														<option value="Cafe">Cafe</option>
-														<option value="Celeste">Celeste</option>
-														<option value="Dorado">Dorado</option>
-														<option value="Gris">Gris</option>
-														<option value="Morado">Morado</option>
-														<option value="Naranjo">Naranjo</option>
-														<option value="Negro">Negro</option>
-														<option value="Plateado">Plateado</option>
-														<option value="Rojo">Rojo</option>
-														<option value="Verde">Verde</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Aro</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="12">12</option>
-														<option value="16">16</option>
-														<option value="20">20</option>
-														<option value="24">24</option>
-														<option value="26">26</option>
-														<option value="27.5">27.5</option>
-														<option value="28">28</option>
-														<option value="29">29</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Factura o Boleta de la compra</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.factura.id_for_label }}">Factura o Boleta de la compra</label>
 												<div class="col-lg-6">
 													<div class="fileupload fileupload-new" data-provides="fileupload">
 														<div class="input-append">
@@ -377,6 +284,7 @@
 																<span class="fileupload-exists">Change</span>
 																<span class="fileupload-new">Seleccionar Archivo</span>
 																<input type="file" />
+																{{ form.factura }}
 															</span>
 															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
 														</div>
@@ -386,7 +294,7 @@
 											
 											
 											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Subir fotos de la bicicleta</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.foto.id_for_label }}">Subir fotos de la bicicleta</label>
 												<div class="col-lg-6">
 													<div class="fileupload fileupload-new" data-provides="fileupload">
 														<div class="input-append">
@@ -397,7 +305,7 @@
 															<span class="btn btn-default btn-file">
 																<span class="fileupload-exists">Change</span>
 																<span class="fileupload-new">Seleccionar Archivo</span>
-																<input type="file" />
+																{{ form.foto }}
 															</span>
 															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
 														</div>
@@ -405,19 +313,16 @@
 												</div>
 											</div>
 											
-											
-											
-											
 											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Descripción de la bicicleta</label>
+												<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.descripcion.id_for_label }}">Descripción de la bicicleta</label>
 												<div class="col-lg-6">
-													<textarea class="form-control" rows="3" id="textareaDefault"></textarea>
+													{{ form.descripcion|add_class:"form-control" }}
 												</div>
 											</div>
 											
 											<div class="form-group row">
 												<label class="col-lg-3 control-label text-lg-right pt-2">
-											<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Registar</button>
+											<button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Registar</button>
 											<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-default">Borrar</button>
 												</label>
                                             </div>
