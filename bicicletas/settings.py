@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LOGIN_URL = '/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

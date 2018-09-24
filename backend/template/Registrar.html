@@ -49,22 +49,26 @@
 						<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i>Registrar</h2>
 					</div>
 					<div class="card-body">
-						<form>
-							
+						{{ form.non_field_errors }}
+						<form action="{% url 'registrar'  %}" method="post">
+							{% csrf_token %}
 							<div class="form-group mb-3">
-								<label>E-mail</label>
-								<input name="email" type="email" class="form-control form-control-lg" />
+								{{ form.email.errors }}
+								{{ form.email.label_tag }}
+								{{ form.email }}
 							</div>
 
 							<div class="form-group mb-0">
 								<div class="row">
 									<div class="col-sm-6 mb-3">
-										<label>Contraseña</label>
-										<input name="pwd" type="password" class="form-control form-control-lg" />
+										{{ form.password.errors }}
+										{{ form.password.label_tag }}
+										{{ form.password }}
 									</div>
 									<div class="col-sm-6 mb-3">
-										<label>Repetir Contraseña</label>
-										<input name="pwd_confirm" type="password" class="form-control form-control-lg" />
+										{{ form.confirm_password.errors }}
+										{{ form.confirm_password.label_tag }}
+										{{ form.confirm_password }}
 									</div>
 								</div>
 							</div>
@@ -72,8 +76,9 @@
 							<div class="row">
 								<div class="col-sm-8">
 									<div class="checkbox-custom checkbox-default">
-										<input id="AgreeTerms" name="agreeterms" type="checkbox"/>
-										<label for="AgreeTerms">Estoy deacuerdo con <a href="#">los terminos</a></label>
+										{{ form.terms.errors }}
+										{{ form.terms }}
+										<label for="{{ form.terms.id_for_label }}">Estoy deacuerdo con <a href="#">los terminos</a></label>
 									</div>
 								</div>
 								<div class="col-sm-4 text-right">
@@ -90,7 +95,7 @@
 								<a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Conectar con <i class="fab fa-twitter"></i></a>
 							</div>
 
-							<p class="text-center">Ya estas Registrado? <a href="login.html">Inicia Sesión!</a></p>
+							<p class="text-center">Ya estas Registrado? <a href="/login">Inicia Sesión!</a></p>
 
 						</form>
 					</div>

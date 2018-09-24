@@ -49,11 +49,14 @@
 						<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Sign In</h2>
 					</div>
 					<div class="card-body">
-						<form action="index.html" method="post">
+						{{ form.non_field_errors }}
+						<form action="{% url 'login'  %}" method="post">
+							{% csrf_token %}
 							<div class="form-group mb-3">
-								<label>Usuario</label>
+								{{ form.email.errors }}
+								{{ form.email.label_tag }}
 								<div class="input-group">
-									<input name="username" type="text" class="form-control form-control-lg" />
+									{{ form.email }}
 									<span class="input-group-append">
 										<span class="input-group-text">
 											<i class="fas fa-user"></i>
@@ -64,11 +67,12 @@
 
 							<div class="form-group mb-3">
 								<div class="clearfix">
-									<label class="float-left">Contraseña</label>
-									<a href="pages-recover-password.html" class="float-right">Perdiste tu contraseña?</a>
+									<label for="{{ form.password.id_for_label }}" class="float-left">Contraseña</label>
+									<a href="{% url 'recuperar'  %}" class="float-right">Perdiste tu contraseña?</a>
 								</div>
 								<div class="input-group">
-									<input name="pwd" type="password" class="form-control form-control-lg" />
+									{{ form.password.errors }}
+									{{ form.password }}
 									<span class="input-group-append">
 										<span class="input-group-text">
 											<i class="fas fa-lock"></i>
@@ -80,8 +84,9 @@
 							<div class="row">
 								<div class="col-sm-8">
 									<div class="checkbox-custom checkbox-default">
-										<input id="RememberMe" name="rememberme" type="checkbox"/>
-										<label for="RememberMe">Recuerdame</label>
+										{{ form.remember_me.errors }}
+										{{ form.remember_me }}
+										{{ form.remember_me.label_tag }}
 									</div>
 								</div>
 								<div class="col-sm-4 text-right">
