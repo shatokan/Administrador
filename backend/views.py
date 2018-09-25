@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse,Http404
 from .forms import RegistrarForm,LoginForm,BicicletaForm
+from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -57,7 +58,9 @@ def bicicletas_agregar(request):
         form = BicicletaForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            form.save()
+            bicicleta = form.save(commit=False)
+            bicicleta.usuario = request.user
+            bicicleta.save()
             return HttpResponseRedirect('/escritorio')
 
     # if a GET (or any other method) we'll create a blank form
@@ -80,9 +83,8 @@ def bicicletas_eliminar(request):
 
 @login_required
 def bicicletas(request):
-    template = loader.get_template('bicicletas.html')
-    context = dict({})
-    return HttpResponse(template.render(context, request))
+    bikes = Bicicleta.objects.filter(usuario=request.user)
+    return render(request, 'bicicletas.html', {'bikes': bikes})
 
 @login_required
 def escritorio(request):

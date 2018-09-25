@@ -29,6 +29,7 @@ class Aro(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
 
 class Bicicleta(models.Model):
+    usuario = models.ForeignKey(User,on_delete=models.CASCADE)
     modelo = models.CharField(max_length=255)
     numero_serie = models.CharField(max_length=255)
     descripcion = models.TextField(default='')
