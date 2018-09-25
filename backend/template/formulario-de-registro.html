@@ -1,476 +1,317 @@
-<!doctype html>
-<html class="fixed">
-	<head>
-
-		<!-- Basic -->
-		<meta charset="UTF-8">
-
-		<title>Registro Nacional de Bicicletas</title>
-		<meta name="keywords" content="HTML5 Admin Template" />
-		<meta name="description" content="Registro Nacional de Bicicletas">
-		<meta name="author" content="registronacionaldebicicletas.cl">
-
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-		<!-- Web Fonts  -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="/static/vendor/animate/animate.css">
-
-		<link rel="stylesheet" href="/static/vendor/font-awesome/css/fontawesome-all.min.css" />
-		<link rel="stylesheet" href="/static/vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="/static/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-
-		<!-- Specific Page Vendor CSS -->
-		<link rel="stylesheet" href="/static/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
-
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="/static/css/theme.css" />
-
-		<!-- Skin CSS -->
-		<link rel="stylesheet" href="/static/css/skins/default.css" />
-
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="/static/css/custom.css">
-
-		<!-- Head Libs -->
-		<script src="/static/vendor/modernizr/modernizr.js"></script>
-
-	</head>
-	<body>
-		<section class="body">
-
-			<!-- start: header -->
-			<header class="header">
-				<div class="logo-container">
-					<a href="../2.1.1" class="logo">
-						<img src="/static/img/logo.png" width="75" height="35" alt="Porto Admin" />
-					</a>
-					<div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
-						<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
-					</div>
-				</div>
-			
-
-			</header>
-			<!-- end: header -->
-
-			<div class="inner-wrapper">
-				<!-- start: sidebar -->
-				<aside id="sidebar-left" class="sidebar-left">
-				
-				    <div class="sidebar-header">
-				        <div class="sidebar-title">
-				           Menu
-				        </div>
-				        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-				            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
-				        </div>
-				    </div>
-				
-				    <div class="nano">
-				        <div class="nano-content">
-				            <nav id="menu" class="nav-main" role="navigation">
-				            
-				                <ul class="nav nav-main">
-				                    <li>
-				                        <a class="nav-link" href="formulario-de-registro.html">
-				                            <i class="fas fa-home" aria-hidden="true"></i>
-				                            <span>Formulario de Registro</span>
-				                        </a>                        
-				                    </li>
-									
-									
-				                  
-				                </ul>
-				            </nav>
-				
-				           
-				
-				            <hr class="separator" />
-				
-				        
-				        </div>
-				
-				        <script>
-				            // Maintain Scroll Position
-				            if (typeof localStorage !== 'undefined') {
-				                if (localStorage.getItem('sidebar-left-position') !== null) {
-				                    var initialPosition = localStorage.getItem('sidebar-left-position'),
-				                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
-				                    
-				                    sidebarLeft.scrollTop = initialPosition;
-				                }
-				            }
-				        </script>
-				        
-				
-				    </div>
-				
-				</aside>
-				<!-- end: sidebar -->
-
-				<section role="main" class="content-body card-margin">
-					<header class="page-header">
-						<h2>Formulario Registro </h2>
-					
+{% extends 'base.html' %}
+{% block content %}
+	<section role="main" class="content-body card-margin">
+		<header class="page-header">
+			<h2>Formulario Registro </h2>
+		</header>
+		<!-- start: page -->
+		<div class="row">
+			<div class="col">
+				<section class="card">
+					<header class="card-header">
+						<div class="card-actions">
+							<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+							<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+						</div>
 						
+						<h2 class="card-title">Nuevos Usuarios</h2>
 					</header>
-
-					<!-- start: page -->
-						<div class="row">
-							<div class="col">
-								<section class="card">
-									<header class="card-header">
-										<div class="card-actions">
-											<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-											<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-										</div>
-						
-										<h2 class="card-title">Nuevos Usuarios</h2>
-									</header>
-									<div class="card-body">
-										<form class="form-horizontal form-bordered" method="get">
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nombre</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Apellido</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RUT</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Teléfono</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Región</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														
-														<option value="1">I Tarapac&aacute;</option>
-														<option value="2">II Antofagasta</option>
-														<option value="3">III Atacama</option>
-														<option value="4">IV Coquimbo</option>
-														<option value="5">V Valpara&iacute;so</option>
-														<option value="6">VI Regi&oacute;n del Libertador Gral. Bernardo O&rsquo;Higgins</option>
-														<option value="7">VII Regi&oacute;n del Maule</option>
-														<option value="8">VIII Regi&oacute;n del Biob&iacute;o</option>
-														<option value="9">IX Regi&oacute;n de la Araucan&iacute;a</option>
-														<option value="10">X Regi&oacute;n de Los Lagos</option>
-														<option value="11">XI Regi&oacute;n Ais&eacute;n del Gral. Carlos Ib&aacute;&ntilde;ez del Campo</option>
-														<option value="12">XII Regi&oacute;n de Magallanes y de la Ant&aacute;rtica Chilena</option>
-														<option value="13">XIII Regi&oacute;n Metropolitana de Santiago</option>
-														<option value="14">XIV Regi&oacute;n de Los R&iacute;os</option>
-														<option value="15">XV Arica y Parinacota</option>
-													
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Dirección</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											
-										
-						
-											
-										</form>
-									</div>
-								</section>
+					<div class="card-body">
+						<form class="form-horizontal form-bordered" method="get">
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nombre</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
 							</div>
-						</div>
-					
-					
-					
-						
-						<div class="row">
-							<div class="col">
-								<section class="card">
-									<header class="card-header">
-										<div class="card-actions">
-											<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-											<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-										</div>
-						
-										<h2 class="card-title">Datos Bicicleta</h2>
-									</header>
-									<div class="card-body">
-										<form class="form-horizontal form-bordered" method="get">
-											
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número de Serie</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											
-											
-											
-												<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Marca</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="1">GT</option>
-														<option value="2">Bianchi</option>
-														<option value="3">Canyon</option>
-														<option value="4">Mongoose</option>
-														<option value="5">Merida</option>
-														<option value="6">Kona</option>
-														<option value="7">Jeep</option>
-														<option value="8">Giant</option>
-														<option value="9">Cannondale</option>
-														<option value="10">Lahsen</option>
-														<option value="11">BMC</option>
-														<option value="12">Fuji</option>
-														<option value="13">Focus</option>
-														<option value="14">Oxford</option>
-														<option value="15">Rocky Mountain</option>
-														<option value="16">Scott</option>
-														<option value="17">Specialized</option>
-														<option value="18">Trek</option>
-														<option value="19">Upland</option>
-														<option value="20">Venzo</option>
-														<option value="21">Otros</option>
-													
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Modelo</label>
-												<div class="col-lg-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Estilo</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="1">Hibrida</option>
-														<option value="2">Ciudad/Urbana</option>
-														<option value="3">Mountain Bike</option>
-														<option value="4">Cross o BMX</option>
-														<option value="5">Pistera o Rutera</option>
-														<option value="6">Fixie</option>
-														<option value="7">Plegables</option>
-														<option value="8">El&eacute;ctrica</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Color Primario</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="Amarillo">Amarillo</option>
-														<option value="Azul">Azul</option>
-														<option value="Blanco">Blanco</option>
-														<option value="Cafe">Cafe</option>
-														<option value="Celeste">Celeste</option>
-														<option value="Dorado">Dorado</option>
-														<option value="Gris">Gris</option>
-														<option value="Morado">Morado</option>
-														<option value="Naranjo">Naranjo</option>
-														<option value="Negro">Negro</option>
-														<option value="Plateado">Plateado</option>
-														<option value="Rojo">Rojo</option>
-														<option value="Verde">Verde</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Color Secundario</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="Amarillo">Amarillo</option>
-														<option value="Azul">Azul</option>
-														<option value="Blanco">Blanco</option>
-														<option value="Cafe">Cafe</option>
-														<option value="Celeste">Celeste</option>
-														<option value="Dorado">Dorado</option>
-														<option value="Gris">Gris</option>
-														<option value="Morado">Morado</option>
-														<option value="Naranjo">Naranjo</option>
-														<option value="Negro">Negro</option>
-														<option value="Plateado">Plateado</option>
-														<option value="Rojo">Rojo</option>
-														<option value="Verde">Verde</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Aro</label>
-												<div class="col-lg-6">
-												
-													<select class="form-control mb-3">
-														<option value="12">12</option>
-														<option value="16">16</option>
-														<option value="20">20</option>
-														<option value="24">24</option>
-														<option value="26">26</option>
-														<option value="27.5">27.5</option>
-														<option value="28">28</option>
-														<option value="29">29</option>
-														<option value="9">Otros</option>
-													</select>
-													
-												</div>
-											</div>
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Factura o Boleta de la compra</label>
-												<div class="col-lg-6">
-													<div class="fileupload fileupload-new" data-provides="fileupload">
-														<div class="input-append">
-															<div class="uneditable-input">
-																<i class="fas fa-file fileupload-exists"></i>
-																<span class="fileupload-preview"></span>
-															</div>
-															<span class="btn btn-default btn-file">
-																<span class="fileupload-exists">Change</span>
-																<span class="fileupload-new">Seleccionar Archivo</span>
-																<input type="file" />
-															</span>
-															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">Subir fotos de la bicicleta</label>
-												<div class="col-lg-6">
-													<div class="fileupload fileupload-new" data-provides="fileupload">
-														<div class="input-append">
-															<div class="uneditable-input">
-																<i class="fas fa-file fileupload-exists"></i>
-																<span class="fileupload-preview"></span>
-															</div>
-															<span class="btn btn-default btn-file">
-																<span class="fileupload-exists">Change</span>
-																<span class="fileupload-new">Seleccionar Archivo</span>
-																<input type="file" />
-															</span>
-															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											
-											
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Descripción de la bicicleta</label>
-												<div class="col-lg-6">
-													<textarea class="form-control" rows="3" id="textareaDefault"></textarea>
-												</div>
-											</div>
-											
-											
-											<div class="form-group row">
-												<label class="col-lg-3 control-label text-lg-right pt-2">
-											<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Registar</button>
-											<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-default">Borrar</button>
-												</label>
-                                            </div>
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Apellido</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RUT</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Teléfono</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Región</label>
+								<div class="col-lg-6">
 									
-											
-										</form>
-									</div>
-								</section>
+									<select class="form-control mb-3">
+										
+										<option value="1">I Tarapac&aacute;</option>
+										<option value="2">II Antofagasta</option>
+										<option value="3">III Atacama</option>
+										<option value="4">IV Coquimbo</option>
+										<option value="5">V Valpara&iacute;so</option>
+										<option value="6">VI Regi&oacute;n del Libertador Gral. Bernardo O&rsquo;Higgins</option>
+										<option value="7">VII Regi&oacute;n del Maule</option>
+										<option value="8">VIII Regi&oacute;n del Biob&iacute;o</option>
+										<option value="9">IX Regi&oacute;n de la Araucan&iacute;a</option>
+										<option value="10">X Regi&oacute;n de Los Lagos</option>
+										<option value="11">XI Regi&oacute;n Ais&eacute;n del Gral. Carlos Ib&aacute;&ntilde;ez del Campo</option>
+										<option value="12">XII Regi&oacute;n de Magallanes y de la Ant&aacute;rtica Chilena</option>
+										<option value="13">XIII Regi&oacute;n Metropolitana de Santiago</option>
+										<option value="14">XIV Regi&oacute;n de Los R&iacute;os</option>
+										<option value="15">XV Arica y Parinacota</option>
+										
+									</select>
+									
+								</div>
 							</div>
-						</div>
-						
-					
-						
-				
-					<!-- end: page -->
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Dirección</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+						</form>
+					</div>
 				</section>
 			</div>
-
-	
-		</section>
-
-		<!-- Vendor -->
-		<script src="/static/vendor/jquery/jquery.js"></script>
-		<script src="/static/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-		<script src="/static/vendor/popper/umd/popper.min.js"></script>
-		<script src="/static/vendor/bootstrap/js/bootstrap.js"></script>
-		<script src="/static/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="/static/vendor/common/common.js"></script>
-		<script src="/static/vendor/nanoscroller/nanoscroller.js"></script>
-		<script src="/static/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-		<script src="/static/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+		</div>
 		
-		<!-- Specific Page Vendor -->
-		<script src="/static/vendor/autosize/autosize.js"></script>
-		<script src="/static/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-		
-		<!-- Theme Base, Components and Settings -->
-		<script src="/static/js/theme.js"></script>
-		
-		<!-- Theme Custom -->
-		<script src="/static/js/custom.js"></script>
-		
-		<!-- Theme Initialization Files -->
-		<script src="/static/js/theme.init.js"></script>
-
-	</body>
-</html>
+		<div class="row">
+			<div class="col">
+				<section class="card">
+					<header class="card-header">
+						<div class="card-actions">
+							<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+							<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+						</div>
+						
+						<h2 class="card-title">Datos Bicicleta</h2>
+					</header>
+					<div class="card-body">
+						<form class="form-horizontal form-bordered" method="get">
+							
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número de Serie</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Marca</label>
+								<div class="col-lg-6">
+									
+									<select class="form-control mb-3">
+										<option value="1">GT</option>
+										<option value="2">Bianchi</option>
+										<option value="3">Canyon</option>
+										<option value="4">Mongoose</option>
+										<option value="5">Merida</option>
+										<option value="6">Kona</option>
+										<option value="7">Jeep</option>
+										<option value="8">Giant</option>
+										<option value="9">Cannondale</option>
+										<option value="10">Lahsen</option>
+										<option value="11">BMC</option>
+										<option value="12">Fuji</option>
+										<option value="13">Focus</option>
+										<option value="14">Oxford</option>
+										<option value="15">Rocky Mountain</option>
+										<option value="16">Scott</option>
+										<option value="17">Specialized</option>
+										<option value="18">Trek</option>
+										<option value="19">Upland</option>
+										<option value="20">Venzo</option>
+										<option value="21">Otros</option>
+										
+									</select>
+									
+								</div>
+							</div>
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Modelo</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="inputDefault">
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Estilo</label>
+								<div class="col-lg-6">
+									
+									<select class="form-control mb-3">
+										<option value="1">Hibrida</option>
+										<option value="2">Ciudad/Urbana</option>
+										<option value="3">Mountain Bike</option>
+										<option value="4">Cross o BMX</option>
+										<option value="5">Pistera o Rutera</option>
+										<option value="6">Fixie</option>
+										<option value="7">Plegables</option>
+										<option value="8">El&eacute;ctrica</option>
+										<option value="9">Otros</option>
+									</select>
+									
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Color Primario</label>
+								<div class="col-lg-6">
+									
+									<select class="form-control mb-3">
+										<option value="Amarillo">Amarillo</option>
+										<option value="Azul">Azul</option>
+										<option value="Blanco">Blanco</option>
+										<option value="Cafe">Cafe</option>
+										<option value="Celeste">Celeste</option>
+										<option value="Dorado">Dorado</option>
+										<option value="Gris">Gris</option>
+										<option value="Morado">Morado</option>
+										<option value="Naranjo">Naranjo</option>
+										<option value="Negro">Negro</option>
+										<option value="Plateado">Plateado</option>
+										<option value="Rojo">Rojo</option>
+										<option value="Verde">Verde</option>
+										<option value="9">Otros</option>
+									</select>
+									
+								</div>
+							</div>
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Color Secundario</label>
+								<div class="col-lg-6">
+									
+									<select class="form-control mb-3">
+										<option value="Amarillo">Amarillo</option>
+										<option value="Azul">Azul</option>
+										<option value="Blanco">Blanco</option>
+										<option value="Cafe">Cafe</option>
+										<option value="Celeste">Celeste</option>
+										<option value="Dorado">Dorado</option>
+										<option value="Gris">Gris</option>
+										<option value="Morado">Morado</option>
+										<option value="Naranjo">Naranjo</option>
+										<option value="Negro">Negro</option>
+										<option value="Plateado">Plateado</option>
+										<option value="Rojo">Rojo</option>
+										<option value="Verde">Verde</option>
+										<option value="9">Otros</option>
+									</select>
+									
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Aro</label>
+								<div class="col-lg-6">
+									
+									<select class="form-control mb-3">
+										<option value="12">12</option>
+										<option value="16">16</option>
+										<option value="20">20</option>
+										<option value="24">24</option>
+										<option value="26">26</option>
+										<option value="27.5">27.5</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="9">Otros</option>
+									</select>
+									
+								</div>
+							</div>
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Factura o Boleta de la compra</label>
+								<div class="col-lg-6">
+									<div class="fileupload fileupload-new" data-provides="fileupload">
+										<div class="input-append">
+											<div class="uneditable-input">
+												<i class="fas fa-file fileupload-exists"></i>
+												<span class="fileupload-preview"></span>
+											</div>
+											<span class="btn btn-default btn-file">
+												<span class="fileupload-exists">Change</span>
+												<span class="fileupload-new">Seleccionar Archivo</span>
+												<input type="file" />
+											</span>
+											<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">Subir fotos de la bicicleta</label>
+								<div class="col-lg-6">
+									<div class="fileupload fileupload-new" data-provides="fileupload">
+										<div class="input-append">
+											<div class="uneditable-input">
+												<i class="fas fa-file fileupload-exists"></i>
+												<span class="fileupload-preview"></span>
+											</div>
+											<span class="btn btn-default btn-file">
+												<span class="fileupload-exists">Change</span>
+												<span class="fileupload-new">Seleccionar Archivo</span>
+												<input type="file" />
+											</span>
+											<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Descripción de la bicicleta</label>
+								<div class="col-lg-6">
+									<textarea class="form-control" rows="3" id="textareaDefault"></textarea>
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								<label class="col-lg-3 control-label text-lg-right pt-2">
+									<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Registar</button>
+									<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-default">Borrar</button>
+								</label>
+							</div>
+							
+							
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+		<!-- end: page -->
+	</section>
+{% endblock %}
