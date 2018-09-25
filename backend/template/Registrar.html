@@ -49,13 +49,14 @@
 						<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i>Registrar</h2>
 					</div>
 					<div class="card-body">
+						{% load widget_tweaks %}
 						{{ form.non_field_errors }}
 						<form action="{% url 'registrar'  %}" method="post">
 							{% csrf_token %}
 							<div class="form-group mb-3">
 								{{ form.email.errors }}
 								{{ form.email.label_tag }}
-								{{ form.email }}
+								{{ form.email|add_class:"form-control form-control-lg" }}
 							</div>
 
 							<div class="form-group mb-0">
@@ -63,12 +64,12 @@
 									<div class="col-sm-6 mb-3">
 										{{ form.password.errors }}
 										{{ form.password.label_tag }}
-										{{ form.password }}
+										{{ form.password|add_class:"form-control form-control-lg" }}
 									</div>
 									<div class="col-sm-6 mb-3">
 										{{ form.confirm_password.errors }}
 										{{ form.confirm_password.label_tag }}
-										{{ form.confirm_password }}
+										{{ form.confirm_password|add_class:"form-control form-control-lg" }}
 									</div>
 								</div>
 							</div>

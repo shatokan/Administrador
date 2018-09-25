@@ -29,10 +29,6 @@ class RegistrarForm(forms.Form):
 
     terms = forms.BooleanField(required=True)
 
-    email.widget.attrs.update({'class': 'form-control form-control-lg'})
-    password.widget.attrs.update({'class': 'form-control form-control-lg'})
-    confirm_password.widget.attrs.update({'class': 'form-control form-control-lg'})
-
     def clean(self):
         cleaned_data = super(RegistrarForm, self).clean()
         password = cleaned_data.get("password")
