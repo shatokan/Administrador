@@ -15,18 +15,28 @@ class Usuario(models.Model):
 
 class Marca(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
+    def __str__(self):
+        return '%s' % (self.nombre)
 
 class Estilo(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
-
+    def __str__(self):
+        return '%s' % (self.nombre)
+        
 class Color(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
+    def __str__(self):
+        return '%s' % (self.nombre)
 
 class Region(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
+    def __str__(self):
+        return '%s' % (self.nombre)
 
 class Aro(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
+    def __str__(self):
+        return '%s' % (self.nombre)
 
 class Bicicleta(models.Model):
     usuario = models.ForeignKey(User,on_delete=models.CASCADE)
