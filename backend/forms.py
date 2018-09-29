@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.forms import ModelForm
+from django.forms import ModelForm,FileInput,ClearableFileInput
 from .models import Bicicleta
 
 
@@ -61,7 +61,7 @@ class LoginForm(forms.Form):
                     required=True,
                     label="Clave")
 
-    remember_me = forms.BooleanField(label="Recuerdame")
+    remember_me = forms.BooleanField(label="Recuerdame",required=False)
 
 
     email.widget.attrs.update({'class': 'form-control form-control-lg'})
@@ -87,4 +87,8 @@ class BicicletaForm(ModelForm):
     class Meta:
         model = Bicicleta
         fields = ['numero_serie','descripcion','factura','foto','marca','modelo','estilo','color_primario','color_secundario','aro']
+        widgets = {
+            'factura': FileInput(),
+            'foto': FileInput(),
+        }
 

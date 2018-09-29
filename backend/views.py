@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 
 
@@ -23,7 +24,7 @@ def registrar(request):
             user.is_active = True
             user.set_password(form.cleaned_data.get('password'))
             user.save()
-            return HttpResponseRedirect('/escritorio')
+            return HttpResponseRedirect(reverse('escritorio'))
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -42,7 +43,7 @@ def login(request):
             user = auth.authenticate(username=form.cleaned_data.get('email'), password=form.cleaned_data.get('password'))
             if user is not None:
                 auth.login(request, user)
-                return HttpResponseRedirect('/escritorio')
+                return HttpResponseRedirect(reverse('escritorio'))
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -51,23 +52,32 @@ def login(request):
     return render(request, 'login.html', {'form': form})
 
 @login_required
-def bicicletas_agregar(request):
+def bicicletas_agregar(request,id=None):
     # if this is a POST request we need to process the form data
+    instance = Bicicleta.objects.get(pk=id) if id is not None else Bicicleta()
+
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = BicicletaForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            bicicleta = form.save(commit=False)
-            bicicleta.usuario = request.user
-            bicicleta.save()
-            return HttpResponseRedirect('/escritorio')
+
+        if request.POST.get('Save') is not None:
+            # create a form instance and populate it with data from the request:
+            form = BicicletaForm(request.POST, request.FILES, instance=instance)
+            # check whether it's valid:
+            if form.is_valid():
+                bicicleta = form.save(commit=False)
+                bicicleta.usuario = request.user
+                bicicleta.save()
+                return HttpResponseRedirect(reverse('escritorio'))
+        if request.POST.get('Delete') is not None:
+            instance.delete()
+            return HttpResponseRedirect(reverse('bicicletas'))
+
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = BicicletaForm()
+        form = BicicletaForm(instance=instance)
 
-    return render(request, 'bicicletas-agregar.html', {'form': form})
+    action = reverse('bicicletas-agregar',args=[id] if id is not None else [])
+    return render(request, 'bicicletas-agregar.html', {'form': form,'action':action})
 
 @login_required
 def bicicletas_editar(request):

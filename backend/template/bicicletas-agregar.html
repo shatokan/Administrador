@@ -19,7 +19,7 @@
 					</header>
 					<div class="card-body">
 						{{ form.non_field_errors }}
-						<form action="{% url 'bicicletas-agregar' %}" method="post" enctype="multipart/form-data">
+						<form action="{{ action }}" method="post" enctype="multipart/form-data">
 							{% csrf_token %}
 							<div class="form-group row">
 								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.numero_serie.id_for_label }}">Número de Serie</label>
@@ -130,8 +130,8 @@
 							
 							<div class="form-group row">
 								<label class="col-lg-3 control-label text-lg-right pt-2">
-									<button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Registar</button>
-									<button type="button" class="mb-1 mt-1 mr-1 btn-lg btn-default">Borrar</button>
+									<button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary" name="Save">Registar</button>
+									<button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-default" name="Delete">Borrar</button>
 								</label>
 							</div>
 						</form>

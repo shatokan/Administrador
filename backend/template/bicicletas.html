@@ -37,8 +37,8 @@
 										<td>{{ bike.marca.nombre }}</td>
 										<td>{{ bike.modelo }}</td>
 										<td class="actions">
-											<a href=""><i class="fas fa-pencil-alt"></i></a>
-											<a href="" class="delete-row"><i class="far fa-trash-alt"></i></a>
+											<a href="{% url 'bicicletas-agregar' bike.id %}"><i class="fas fa-pencil-alt"></i></a>
+											<a href="{% url 'bicicletas-agregar' bike.id %}" class="delete-row"><i class="far fa-trash-alt"></i></a>
 										</td>
 									</tr>
 								{% endfor %}
