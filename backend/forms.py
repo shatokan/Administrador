@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.forms import ModelForm,FileInput,ClearableFileInput
-from .models import Bicicleta
+from .models import Bicicleta, Usuario
 
 
 class RegistrarForm(forms.Form):
@@ -91,4 +91,9 @@ class BicicletaForm(ModelForm):
             'factura': FileInput(),
             'foto': FileInput(),
         }
+
+class UsuarioForm(ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['nombre','apellido','rut','telefono','direccion','region']
 

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,formulario_de_registro,login,recuperar
+from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,datos_usuario,login,recuperar
 
 
 
@@ -28,7 +28,7 @@ urlpatterns = [
     path('bicicletas_eliminar',bicicletas_eliminar,name="bicicletas-eliminar"),
     path('bicicletas',bicicletas,name="bicicletas"),
     path('escritorio',escritorio,name="escritorio"),
-    path('formulario-de-registro',formulario_de_registro),
+    path('datos_usuario',datos_usuario,name='datos-usuario'),
     path('login',login,name="login"),
     path('recuperar',recuperar,name="recuperar"),
     #path('accounts/', include('django.contrib.auth.urls')),

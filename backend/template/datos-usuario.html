@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+	<section role="main" class="content-body card-margin">
+		<header class="page-header">
+			<h2>Formulario Registro </h2>
+		</header>
+		<!-- start: page -->
+		<div class="row">
+			<div class="col">
+				<section class="card">
+					<header class="card-header">
+						<div class="card-actions">
+							<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+							<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+						</div>
+						
+						<h2 class="card-title">Tus Datos</h2>
+					</header>
+					<div class="card-body">
+						{{ form.non_field_errors }}
+						<form class="form-horizontal form-bordered" action="{% url 'datos-usuario' %}" method="POST">
+							{% csrf_token %}
+							
+							<div class="form-group row">
+								{{ form.nombre.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.nombre.id_for_label }}">Nombre</label>
+								<div class="col-lg-6">
+									{{ form.nombre|add_class:"form-control" }}
+								</div>
+							</div>
+							<div class="form-group row">
+								{{ form.apellido.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.apellido.id_for_label }}">Apellido</label>
+								<div class="col-lg-6">
+									{{ form.apellido|add_class:"form-control"}}
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								{{ form.rut.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.rut.id_for_label }}">RUT</label>
+								<div class="col-lg-6">
+									{{ form.rut|add_class:"form-control"}}
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								{{ form.telefono.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.telefono.id_for_label }}">Teléfono</label>
+								<div class="col-lg-6">
+									{{ form.telefono|add_class:"form-control"}}
+								</div>
+							</div>
+							
+							
+							<div class="form-group row">
+								{{ form.region.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.region.id_for_label }}">Región</label>
+								<div class="col-lg-6">
+									{{ form.region|add_class:"form-control mb-3"}}									
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								{{ form.direccion.errors }}
+								<label class="col-lg-3 control-label text-lg-right pt-2" for="{{ form.direccion.id_for_label }}">Dirección</label>
+								<div class="col-lg-6">
+								{{ form.direccion|add_class:"form-control"}}
+								</div>
+							</div>
+
+                           <div class="form-group row">
+                                   <label class="col-lg-3 control-label text-lg-right pt-2">
+                                           <button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary">Guardar</button>
+                                   </label>
+                           </div>
+							
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+		
+		<!-- end: page -->
+	</section>
+{% endblock %}

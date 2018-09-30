@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse,Http404
-from .forms import RegistrarForm,LoginForm,BicicletaForm
+from .forms import RegistrarForm,LoginForm,BicicletaForm,UsuarioForm
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -71,7 +71,6 @@ def bicicletas_agregar(request,id=None):
             instance.delete()
             return HttpResponseRedirect(reverse('bicicletas'))
 
-
     # if a GET (or any other method) we'll create a blank form
     else:
         form = BicicletaForm(instance=instance)
@@ -103,10 +102,26 @@ def escritorio(request):
     return HttpResponse(template.render(context, request))
 
 @login_required
-def formulario_de_registro(request):
-    template = loader.get_template('formulario-de-registro.html')
-    context = dict({})
-    return HttpResponse(template.render(context, request))
+def datos_usuario(request):
+    # if this is a POST request we need to process the form data
+    instance = Usuario.objects.get(usuario=request.user) if Usuario.objects.filter(usuario=request.user).count() == 1 else Usuario()
+
+    if request.method == 'POST':
+
+        form = UsuarioForm(request.POST, instance=instance)
+        # check whether it's valid:
+        if form.is_valid():
+            usuario = form.save(commit=False)
+            usuario.usuario = request.user
+            usuario.save()
+            return HttpResponseRedirect(reverse('escritorio'))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = UsuarioForm(instance=instance)
+
+    return render(request, 'datos-usuario.html', {'form': form})
+
 
 
 def recuperar(request):
