@@ -13,6 +13,17 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=255)
     region = models.ForeignKey('Region', blank=True, null=True, on_delete=models.SET_NULL)
 
+class Transferencia(models.Model):
+    ACEPTADO = "aceptado"
+    RECHAZADO = "rechazado"
+    ESTADO_CHOICES = ((ACEPTADO,"Aceptado"),(RECHAZADO,"Rechazado"))
+    usuario_desde = models.ForeignKey(User,on_delete=models.CASCADE,related_name='mis_transferencias')
+    usuario_hacia = models.ForeignKey(User,on_delete=models.CASCADE,related_name='transfernecias_para_mi')
+    bicicleta = models.ForeignKey('Bicicleta',on_delete=models.CASCADE)
+    estado = models.CharField(max_length=10,choices=ESTADO_CHOICES,blank=True)
+    mensaje = models.TextField()
+
+
 class Marca(models.Model):
     nombre = models.CharField(max_length=255, unique=True)
     def __str__(self):
@@ -50,3 +61,5 @@ class Bicicleta(models.Model):
     aro = models.ForeignKey('Aro', on_delete=models.CASCADE)
     color_primario = models.ForeignKey('Color', related_name='color_primario', on_delete=models.CASCADE)
     color_secundario = models.ForeignKey('Color', related_name='color_secundario', on_delete=models.CASCADE)
+    def __str__(self):
+        return '%s %s' % (self.marca.nombre, self.modelo) 

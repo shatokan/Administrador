@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse,Http404
-from .forms import RegistrarForm,LoginForm,BicicletaForm,UsuarioForm
+from .forms import RegistrarForm,LoginForm,BicicletaForm,UsuarioForm,RoboForm,TransferenciaForm,AceptarTransferenciaForm
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.conf import settings
 
 
 
@@ -121,6 +122,78 @@ def datos_usuario(request):
         form = UsuarioForm(instance=instance)
 
     return render(request, 'datos-usuario.html', {'form': form})
+
+@login_required
+def denunciar_robo(request):
+
+    if request.method == 'POST':
+
+        form = RoboForm(request.user,request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+
+            return render(request, 'informe-robo.html', {
+                'bicicletas': Bicicleta.objects.filter(id__in=form.cleaned_data.get('bicicletas')),
+                'descripcion':form.cleaned_data.get('descripcion'),
+                'usuario':Usuario.objects.get(usuario=request.user) if Usuario.objects.filter(usuario=request.user).count() == 1 else None,
+                'url_base':settings.MEDIA_URL
+                })
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RoboForm(request.user)
+
+    return render(request, 'informar-robo-form.html', {'form': form})
+
+@login_required
+def transferir(request):
+    if request.method == 'POST':
+
+        form = TransferenciaForm(request.user,request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            transferencia = form.save(commit=False)
+            transferencia.usuario_desde = request.user
+            transferencia.save()
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = TransferenciaForm(request.user)
+
+    return render(request, 'transferir.html', {'form': form})
+
+@login_required
+def transferencias(request,id=None):
+
+    return render(request, 'transferencias.html', {'transferencias': Transferencia.objects.filter(usuario_hacia=request.user)})
+
+
+@login_required
+def transferencia(request,id):
+    transferencia = Transferencia.objects.get(pk=id)
+    if request.method == 'POST':
+
+        form = AceptarTransferenciaForm(request.user,request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            if request.POST.get('Save') is not None:
+                transferencia.estado = Transferencia.ACEPTADO
+                transferencia.bicicleta.usuario = request.user
+                transferencia.bicicleta.save()
+                transferencia.save()
+                
+                return HttpResponseRedirect(reverse('bicicletas'))
+
+            if request.POST.get('Delete') is not None:
+                transferencia.estado = Transferencia.RECHAZADO
+                transferencia.save()
+                return HttpResponseRedirect(reverse('transferencias',args=[transferencia.id]))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AceptarTransferenciaForm(request.user,initial={'transferencia': id})
+
+    return render(request, 'transferencia.html', {'form': form,'transferencia':transferencia, 'url_base':settings.MEDIA_URL})
 
 
 

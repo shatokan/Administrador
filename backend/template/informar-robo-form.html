@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<section role="main" class="content-body card-margin">
+    <header class="page-header">
+        <h2>Reportar Bicicleta robada</h2>
+    </header>
+    
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    
+                    <h2 class="card-title">Genrer Informe de Robo</h2>
+                </header>
+                <div class="card-body">
+                        {% load widget_tweaks %}
+                        {{ form.non_field_errors }}
+                        <form action="{% url 'denunciar-robo'  %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                {{ form.bicicletas.errors }}
+                                {{ form.bicicletas.label_tag }}
+                                <div class="input-group">
+                                    {{ form.bicicletas|add_class:"form-control form-control-lg" }}
+
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.descripcion.errors }}
+                                {{ form.descripcion.label_tag }}
+                                <div class="input-group">
+                                    {{ form.descripcion|add_class:"form-control form-control-lg" }}
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary" name="Save">Generar</button>
+                            </div>
+                        </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}

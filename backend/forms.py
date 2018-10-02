@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.forms import ModelForm,FileInput,ClearableFileInput
-from .models import Bicicleta, Usuario
+from .models import Bicicleta, Usuario, Transferencia
 
 
 class RegistrarForm(forms.Form):
@@ -83,17 +82,62 @@ class LoginForm(forms.Form):
             )
 
 
-class BicicletaForm(ModelForm):
+class BicicletaForm(forms.ModelForm):
     class Meta:
         model = Bicicleta
         fields = ['numero_serie','descripcion','factura','foto','marca','modelo','estilo','color_primario','color_secundario','aro']
         widgets = {
-            'factura': FileInput(),
-            'foto': FileInput(),
+            'factura': forms.FileInput(),
+            'foto':forms.FileInput(),
         }
 
-class UsuarioForm(ModelForm):
+class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['nombre','apellido','rut','telefono','direccion','region']
+
+
+class RoboForm(forms.Form):
+
+    bicicletas = forms.MultipleChoiceField(choices=[])
+    
+    descripcion = forms.CharField(widget=forms.Textarea()) 
+
+    def __init__(self, user, *args, **kwargs):
+        super(RoboForm, self).__init__(*args, **kwargs)
+        self.fields['bicicletas'] = forms.MultipleChoiceField(
+                choices=[(bicicleta.id, bicicleta.numero_serie) for bicicleta in Bicicleta.objects.filter(usuario=user)],
+                widget=forms.CheckboxSelectMultiple(),
+                required=True
+            )
+
+
+class TransferenciaForm(forms.ModelForm):
+    class Meta:
+        model = Transferencia
+        fields = ['usuario_hacia','bicicleta','mensaje']
+
+    def __init__(self, user, *args, **kwargs):
+        super(TransferenciaForm, self).__init__(*args, **kwargs)
+        self.fields['bicicleta'] = forms.ModelChoiceField(queryset=Bicicleta.objects.filter(usuario=user))
+        self.fields['usuario_hacia'] = forms.ModelChoiceField(
+            queryset=User.objects.exclude(id=user.id),
+            to_field_name='username',
+            widget=forms.EmailInput,
+            error_messages={'invalid_choice': "Usuario no fue encontrado"},
+            help_text="Correo del usuario destinatario",
+            label="Destinatario")
+
+        
+
+class AceptarTransferenciaForm(forms.Form):
+    def __init__(self, user, *args, **kwargs):
+        super(AceptarTransferenciaForm, self).__init__(*args, **kwargs)
+        self.user = user
+        self.fields['transferencia'] = forms.ModelChoiceField(
+            queryset=Transferencia.objects.filter(usuario_hacia=user),
+            widget=forms.HiddenInput)
+
+
+
 

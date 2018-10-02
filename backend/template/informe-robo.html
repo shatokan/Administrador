@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body onload="window.print()">
+        <h3>Informe de robo</h3>
+        <p>Mediante el presente documento se informa el robo de las bicicletas especificadas mas abajo</p>
+        <table>
+            <tr>
+                <td>modelo</td>
+                <td>numero_serie</td>
+                <td>descripcion</td>
+                <td>marca</td>
+                <td>estilo</td>
+                <td>aro</td>
+                <td>color_primario</td>
+                <td>color_secundario</td>
+                <td>factura</td>
+                <td>foto</td>
+            </tr>
+            
+            {% for bicicleta in bicicletas %}
+                <tr>
+                    <td>{{bicicleta.modelo}}</td>
+                    <td>{{bicicleta.numero_serie}}</td>
+                    <td>{{bicicleta.descripcion}}</td>
+                    <td>{{bicicleta.marca}}</td>
+                    <td>{{bicicleta.estilo}}</td>
+                    <td>{{bicicleta.aro}}</td>
+                    <td>{{bicicleta.color_primario}}</td>
+                    <td>{{bicicleta.color_secundario}}</td>
+                    <td><img src="{{url_base}}{{bicicleta.factura}}" width="200"></td>
+                    <td><img src="{{url_base}}{{bicicleta.foto}}" width="200"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>Esto ha ocurrido bajo las circuntancias explicadas mas abajo:</p>
+        <p>{{descripcion}}</p>
+        <p>A continuacion datos del usuario</p>
+        <table>
+            <tr>
+                <td>nombre</td><td>{{usuario.nombre}}</td>
+            </tr>
+            <tr>
+                <td>apellido</td><td>{{usuario.apellido}}</td>
+            </tr>
+            <tr>
+                <td>email</td><td>{{usuario.usuario.email}}</td>
+            </tr>
+            <tr>
+                <td>rut</td><td>{{usuario.rut}}</td>
+            </tr>
+            <tr>
+                <td>telefono</td><td>{{usuario.telefono}}</td>
+            </tr>
+            <tr>
+                <td>direccion</td><td>{{usuario.direccion}}</td>
+            </tr>
+            <tr>
+                <td>region</td><td>{{usuario.region}}</td>
+            </tr>
+        </table>
+        <br>
+    </body>
+</html>

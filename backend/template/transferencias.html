@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section role="main" class="content-body card-margin">
+        <header class="page-header">
+            <h2>Listado de transferencias </h2>
+        </header>
+        <!-- start: page -->
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <section class="card">
+                    <header class="card-header">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                        </div>
+                        
+                        <h2 class="card-title">Listado de transferencias</h2>
+                    </header>
+                    <div class="card-body">
+                        <table class="table table-responsive-md mb-0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>De</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transferencia in transferencias %}
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ transferencia.usuario_desde.nombre }} {{ transferencia.usuario_desde.apellido }}</td>
+                                        <td>{{ transferencia.bicicleta.marca.nombre }}</td>
+                                        <td>{{ transferencia.bicicleta.modelo }}</td>
+                                        <td class="actions">
+                                            <a href="{% url 'transferencia' transferencia.id %}"><i class="fas fa-pencil-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <!-- end: page -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

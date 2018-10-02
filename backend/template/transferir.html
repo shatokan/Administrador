@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<section role="main" class="content-body card-margin">
+    <header class="page-header">
+        <h2>Transferir Bicicleta</h2>
+    </header>
+    
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    
+                    <h2 class="card-title">Transferir Bicicleta</h2>
+                </header>
+                <div class="card-body">
+                        {% load widget_tweaks %}
+                        {{ form.non_field_errors }}
+                        <form action="{% url 'transferir'  %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                {{ form.usuario_hacia.errors }}
+                                {{ form.usuario_hacia.label_tag }}
+                                <div class="input-group">
+                                    {{ form.usuario_hacia|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.bicicleta.errors }}
+                                {{ form.bicicleta.label_tag }}
+                                <div class="input-group">
+                                    {{ form.bicicleta|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.mensaje.errors }}
+                                {{ form.mensaje.label_tag }}
+                                <div class="input-group">
+                                    {{ form.mensaje|add_class:"form-control form-control-lg" }}
+                                </div>
+                            </div>
+                             <div class="form-group row">
+                                <button type="submit" class="mb-1 mt-1 mr-1 btn-lg btn-primary" name="Save">Transferir</button>
+                            </div>
+                        </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}

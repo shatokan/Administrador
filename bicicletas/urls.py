@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,datos_usuario,login,recuperar
+from django.conf.urls.static import static
+from django.conf import settings
+
+from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,datos_usuario,login,recuperar,denunciar_robo,transferir,transferencias,transferencia
 
 
 
@@ -31,6 +34,11 @@ urlpatterns = [
     path('datos_usuario',datos_usuario,name='datos-usuario'),
     path('login',login,name="login"),
     path('recuperar',recuperar,name="recuperar"),
+    path('denunciar-robo',denunciar_robo,name="denunciar-robo"),
+    path('transferir',transferir,name="transferir"),
+    path('transferencias',transferencias,name="transferencias"),
+    path('transferencias/<int:id>/',transferencias,name="transferencias"),
+    path('transferencia/<int:id>/',transferencia,name="transferencia"),
     #path('accounts/', include('django.contrib.auth.urls')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
