@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .models import Bicicleta, Usuario, Transferencia
+from .models import Bicicleta, Usuario, Transferencia, Robo
 
 
 class RegistrarForm(forms.Form):
@@ -97,19 +97,19 @@ class UsuarioForm(forms.ModelForm):
         fields = ['nombre','apellido','rut','telefono','direccion','region']
 
 
-class RoboForm(forms.Form):
+class RoboForm(forms.ModelForm):
 
-    bicicletas = forms.MultipleChoiceField(choices=[])
-    
-    descripcion = forms.CharField(widget=forms.Textarea()) 
+    class Meta:
+        model = Robo
+        fields = ['bicicletas','comuna','fecha','descripcion']
+        widget = {
+            'fecha':forms.DateTimeInput()
+        }
 
     def __init__(self, user, *args, **kwargs):
         super(RoboForm, self).__init__(*args, **kwargs)
-        self.fields['bicicletas'] = forms.MultipleChoiceField(
-                choices=[(bicicleta.id, bicicleta.numero_serie) for bicicleta in Bicicleta.objects.filter(usuario=user)],
-                widget=forms.CheckboxSelectMultiple(),
-                required=True
-            )
+        self.fields['bicicletas'] = forms.ModelMultipleChoiceField(queryset=Bicicleta.objects.filter(usuario=user),widget=forms.CheckboxSelectMultiple())
+
 
 
 class TransferenciaForm(forms.ModelForm):

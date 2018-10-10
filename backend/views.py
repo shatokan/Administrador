@@ -132,18 +132,26 @@ def denunciar_robo(request):
         # check whether it's valid:
         if form.is_valid():
 
-            return render(request, 'informe-robo.html', {
-                'bicicletas': Bicicleta.objects.filter(id__in=form.cleaned_data.get('bicicletas')),
-                'descripcion':form.cleaned_data.get('descripcion'),
-                'usuario':Usuario.objects.get(usuario=request.user) if Usuario.objects.filter(usuario=request.user).count() == 1 else None,
-                'url_base':settings.MEDIA_URL
-                })
+            robo = form.save(commit=False)
+            robo.reporta = request.user
+            robo.save()
+            form.save_m2m()
+
+            return HttpResponseRedirect(reverse('reporte-robo',args=[robo.id]))
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = RoboForm(request.user)
 
     return render(request, 'informar-robo-form.html', {'form': form})
+
+def reporte_robo(request,id):
+    robo = Robo.objects.get(id=id)
+    return render(request, 'informe-robo.html', {
+        'robo': robo,
+        'url_base':settings.MEDIA_URL
+        })
+
 
 @login_required
 def transferir(request):
@@ -165,7 +173,7 @@ def transferir(request):
 @login_required
 def transferencias(request,id=None):
 
-    return render(request, 'transferencias.html', {'transferencias': Transferencia.objects.filter(usuario_hacia=request.user)})
+    return render(request, 'transferencias.html', {'transferencias': Transferencia.objects.filter(usuario_hacia=request.user,estado=None)})
 
 
 @login_required

@@ -18,7 +18,7 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,datos_usuario,login,recuperar,denunciar_robo,transferir,transferencias,transferencia
+from backend.views import registrar,bicicletas_agregar,bicicletas_editar,bicicletas_eliminar,bicicletas,escritorio,datos_usuario,login,recuperar,denunciar_robo,transferir,transferencias,transferencia,reporte_robo
 
 
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('login',login,name="login"),
     path('recuperar',recuperar,name="recuperar"),
     path('denunciar-robo',denunciar_robo,name="denunciar-robo"),
+    path('reporte-robo/<int:id>/',reporte_robo,name="reporte-robo"),
     path('transferir',transferir,name="transferir"),
     path('transferencias',transferencias,name="transferencias"),
     path('transferencias/<int:id>/',transferencias,name="transferencias"),

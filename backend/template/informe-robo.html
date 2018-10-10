@@ -20,7 +20,7 @@
                 <td>foto</td>
             </tr>
             
-            {% for bicicleta in bicicletas %}
+            {% for bicicleta in robo.bicicletas.all %}
                 <tr>
                     <td>{{bicicleta.modelo}}</td>
                     <td>{{bicicleta.numero_serie}}</td>
@@ -61,6 +61,8 @@
                 <td>region</td><td>{{usuario.region}}</td>
             </tr>
         </table>
+        <br>
+        En la comnua de {{ robo.comuna }} el dia {{ robo.fecha }}
         <br>
     </body>
 </html>

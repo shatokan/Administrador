@@ -2,6 +2,7 @@ version: '3'
 
 services:
   bicicletas:
+    container_name: bicicletas
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:

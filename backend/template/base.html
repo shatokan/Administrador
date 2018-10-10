@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="/static/css/custom.css">
         <!-- Head Libs -->
         <script src="/static/vendor/modernizr/modernizr.js"></script>
+
     </head>
     <body>
         <section class="body">
@@ -156,6 +157,8 @@
             </div>
             
         </section>
+
+
         <!-- Vendor -->
         <script src="/static/vendor/jquery/jquery.js"></script>
         <script src="/static/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
@@ -179,5 +182,9 @@
         
         <!-- Theme Initialization Files -->
         <script src="/static/js/theme.init.js"></script>
+
+        {% block script %}
+        {% endblock %}
+
     </body>
 </html>

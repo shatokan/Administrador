@@ -26,8 +26,25 @@
                                 {{ form.bicicletas.errors }}
                                 {{ form.bicicletas.label_tag }}
                                 <div class="input-group">
-                                    {{ form.bicicletas|add_class:"form-control form-control-lg" }}
+                                    {{ form.bicicletas|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.comuna.errors }}
+                                {{ form.comuna.label_tag }}
+                                <div class="input-group">
+                                    {{ form.comuna|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.fecha.label_tag }}
 
+                                <div class="input-group date" data-provide="datepicker">
+                                    {{ form.fecha.errors }}
+                                    {{ form.fecha|add_class:"form-control" }}
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
@@ -46,5 +63,4 @@
         </div>
     </div>
 </section>
-    
 {% endblock %}

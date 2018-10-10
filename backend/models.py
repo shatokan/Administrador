@@ -12,6 +12,8 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=100)
     direccion = models.CharField(max_length=255)
     region = models.ForeignKey('Region', blank=True, null=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
 class Transferencia(models.Model):
     ACEPTADO = "aceptado"
@@ -22,6 +24,17 @@ class Transferencia(models.Model):
     bicicleta = models.ForeignKey('Bicicleta',on_delete=models.CASCADE)
     estado = models.CharField(max_length=10,choices=ESTADO_CHOICES,blank=True)
     mensaje = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+class Robo(models.Model):
+    reporta = models.ForeignKey(User,on_delete=models.CASCADE,related_name='robos')
+    bicicletas = models.ManyToManyField('Bicicleta')
+    comuna = models.CharField(max_length=255)
+    fecha = models.DateTimeField()
+    descripcion = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
 
 class Marca(models.Model):
@@ -61,5 +74,7 @@ class Bicicleta(models.Model):
     aro = models.ForeignKey('Aro', on_delete=models.CASCADE)
     color_primario = models.ForeignKey('Color', related_name='color_primario', on_delete=models.CASCADE)
     color_secundario = models.ForeignKey('Color', related_name='color_secundario', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return '%s %s' % (self.marca.nombre, self.modelo) 
